@@ -1,0 +1,6 @@
+[
+    {
+        "fontsSubfolder": "",
+        "src": ["node_modules/bootstrap/dist/fonts/*.*"]
+    }
+]
