@@ -32,6 +32,7 @@
 
     $urlRouterProvider.when("", "/");
     $urlRouterProvider.otherwise("/");
+    
     $stateProvider
       .state("homePage", {
         url: "/",
