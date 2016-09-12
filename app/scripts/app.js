@@ -1,4 +1,4 @@
-(function() {
+(function () {
   "use strict";
 
   // Require 3rd party modules
@@ -28,7 +28,7 @@
     "md.data.table",
     "ui.router",
     "ngNotificationsBar"
-  ]).config(function($stateProvider, $urlRouterProvider) {
+  ]).config(function ($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.when("", "/");
     $urlRouterProvider.otherwise("/");
@@ -53,9 +53,20 @@
       .state("contact", {
         url: "/contact",
         templateUrl: "views/contact.html"
+      })
+      .state("tours", {
+        url: "/tours/{tourId:int}",
+        templateUrl: "views/tours.html",
+        controller: "TourController",
+        controllerAs: "vm",
+        resolve: {
+          tourId: ["$stateParams", function ($stateParams) {
+            return $stateParams.tourId;
+          }]
+        }
       });
   });
 
   // Wire-up the app modules
-//  require("./common");
+  require("./tours");
 })();
