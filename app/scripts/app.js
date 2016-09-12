@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  
+
   // Require 3rd party modules
   var angular = require("angular");
   require("angular-animate");
@@ -32,27 +32,27 @@
 
     $urlRouterProvider.when("", "/");
     $urlRouterProvider.otherwise("/");
-    
+
     $stateProvider
       .state("homePage", {
         url: "/",
         templateUrl: "views/homePage/homePage.html"
       })
-      .state("homes", {
-        url: "/homes",
-        templateUrl: "views/homes.html"
+      .state("home", {
+        url: "/home",
+        templateUrl: "views/home.html"
       })
       .state("videos", {
         url: "/videos",
         templateUrl: "views/videos.html"
       })
-      .state("cats", {
-        url: "/cats",
-        templateUrl: "views/cats.html"
+      .state("pricing", {
+        url: "/pricing",
+        templateUrl: "views/pricing.html"
       })
-      .state("dogs", {
-        url: "/dogs",
-        templateUrl: "views/dogs.html"
+      .state("contact", {
+        url: "/contact",
+        templateUrl: "views/contact.html"
       });
   });
 
