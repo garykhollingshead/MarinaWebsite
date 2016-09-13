@@ -22,7 +22,8 @@ var appDirs = {
   styles: "app/styles",
   fonts: "app/fonts",
   views: "app/views",
-  images: "app/images"
+  images: "assets/img",
+  videos: "assets/videos"
 };
 
 var distDirs = {
@@ -31,7 +32,8 @@ var distDirs = {
   views: "dist/views",
   images: "dist/images",
   styles: "dist/styles",
-  fonts: "dist/fonts"
+  fonts: "dist/fonts",
+  videos: "dist/videos"
 };
 
 var outputDir = "output";
@@ -41,6 +43,7 @@ var appFiles = {
   allCss: appDirs.styles + "/**/*.css",
   allViews: appDirs.views + "/**/*.html",
   allImages: appDirs.images + "/**/*",
+  allVideos: appDirs.videos + "/**/*",
   allFonts: [
     appDirs.fonts + "/**/*.eot",
     appDirs.fonts + "/**/*.otf",
@@ -89,6 +92,7 @@ gulp.task("watch", ["build"], function () {
   gulp.watch(appFiles.allFonts, ["fonts"]);
   gulp.watch(appFiles.allScripts, ["browserify"]);
   gulp.watch(appFiles.index, ["index"]);
+  gulp.watch(appFiles.allVideos, ["videos"]);
 });
 
 gulp.task("styles", ["sass", "css", "fonts"]);
@@ -99,18 +103,18 @@ gulp.task("sass", function () {
   }).concat(appFiles.allSass);
 
   var injectAppFiles = gulp.src(sassFiles, {read: false, base: "."});
- 
+
   function transformFilepath(filepath) {
     return "@import \"" + filepath + "\";";
   }
- 
+
   var injectAppOptions = {
     transform: transformFilepath,
     starttag: "// inject:app",
     endtag: "// endinject",
     addRootSlash: false
   };
-  
+
   return gulp.src(appFiles.mainSass)
     .pipe(inject(injectAppFiles, injectAppOptions))
     .pipe(sass())
@@ -142,7 +146,7 @@ gulp.task("fonts", function () {
       stream: true
     }));
   });
-  
+
   return gulp.src(appFiles.allFonts)
     .pipe(gulp.dest(distDirs.fonts))
     .pipe(browserSync.reload({
@@ -179,8 +183,13 @@ gulp.task("images", function () {
     .pipe(gulp.dest(distDirs.images));
 });
 
+gulp.task("videos", function () {
+  return gulp.src(appFiles.allVideos)
+    .pipe(gulp.dest(distDirs.videos));
+});
+
 gulp.task("build", ["clean"], function (cb) {
-  runSequence(["lint-scripts", "images", "views", "index", "styles", "browserify"], cb);
+  runSequence(["lint-scripts", "images", "videos", "views", "index", "styles", "browserify"], cb);
 });
 
 gulp.task("browserify",  function() {

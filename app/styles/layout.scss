@@ -55,6 +55,7 @@ $light_gray: rgb(223, 223, 223); // #dfdfdf
 $medium_gray: rgb(151, 151, 151); // #979797
 $dark_gray: rgb(85, 85, 85); // #555555
 $yellow: #fffcb0;
+$light_green: #cdffac;
 
 // WARNING/NOTIFICATION COLORS //
 $success: rgb(161, 222, 128); // #a1de80
@@ -110,7 +111,7 @@ h3 {
     float: right;
     li {
       a {
-        color: $white;
+        color: $light_green;
         text-transform: uppercase;
         &:hover {
           color: $yellow;
@@ -119,14 +120,14 @@ h3 {
     }
   }
   .navbar-brand {
-    color: $white;
-    font-size: 1.5rem;
+    color: red;
+    font-size: 5rem;
     font-weight: 100;
     letter-spacing: 1px;
     text-transform: uppercase;
     padding: 15px 0;
     &:hover {
-      color: $yellow;
+      color: indianred;
     }
   }
 }
